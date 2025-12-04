@@ -80,6 +80,7 @@ equalButton.addEventListener("click", calculate);
 
 function calculate () {
     if (currentValue == "" || previousValue == "" || operator == "") return;
+    if (currentValue == "0" && operator == "÷") return;
     result = operation(previousValue, currentValue, operator);
     currentValue = result;
     previousValue = "";
