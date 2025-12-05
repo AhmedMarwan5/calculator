@@ -45,16 +45,16 @@ function toggleSign () {
 function operation(first, second, operator) {
     switch (operator) {
         case "+":
-            return (+first + +second).toString();
+            return (+first + +second);
             break;
         case "-":
-            return (+first - +second).toString();
+            return (+first - +second);
             break;
         case "×":
-            return (+first * +second).toString();
+            return (+first * +second);
             break;
         case "÷":
-            return (+first / +second).toString();
+            return (+first / +second);
             break;
     };
 }; 
@@ -62,7 +62,7 @@ function operation(first, second, operator) {
 function calculate () {
     if (currentValue == "" || previousValue == "" || operator == "") return;
     if (currentValue == "0" && operator == "÷") return;
-    result = operation(previousValue, currentValue, operator);
+    result = operation(previousValue, currentValue, operator).toString();
     currentValue = result;
     previousValue = "";
     operator = "";
