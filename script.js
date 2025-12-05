@@ -38,7 +38,7 @@ function setOperator (value) {
 
 function toggleSign () {
     if (currentValue.replaceAll(".", "") == "") return;
-    currentValue = (currentValue * -1).toString();
+    currentValue = (-currentValue).toString();
     render();
 };
 
