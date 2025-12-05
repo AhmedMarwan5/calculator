@@ -60,6 +60,7 @@ function calculate () {
     if (currentValue == "" || previousValue == "" || operator == "") return;
     if (currentValue == "0" && operator == "÷") return;
     result = operation(previousValue, currentValue, operator).toString();
+    result = Math.round(result * 1e+10) / 1e+10;
     currentValue = result;
     previousValue = "";
     operator = "";
