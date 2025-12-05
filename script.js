@@ -57,7 +57,7 @@ function operation(first, second, operator) {
             return (+first / +second).toString();
             break;
     };
-};
+}; 
 
 function calculate () {
     if (currentValue == "" || previousValue == "" || operator == "") return;
@@ -96,7 +96,7 @@ inputsWrapper.addEventListener("pointerdown", (e) => {
         setOperator(e.target.dataset.operator)
     }
 });
-toggleSignButton.addEventListener("click", toggleSign);
-equalButton.addEventListener("click", calculate);
-deleteAllButton.addEventListener("click", deleteAll);
-backspaceButton.addEventListener("click", backspace);
+toggleSignButton.addEventListener("pointerdown", toggleSign);
+equalButton.addEventListener("pointerdown", calculate);
+deleteAllButton.addEventListener("pointerdown", deleteAll);
+backspaceButton.addEventListener("pointerdown", backspace);
