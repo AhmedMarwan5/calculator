@@ -14,21 +14,6 @@ let previousValue = "";
 let result = 0;
 let operator = "";
 
-render();
-
-function render () {
-    mainOutput.textContent = currentValue;
-    secondaryOutput.textContent = `${previousValue} ${operator}`;
-}
-
-function toggleSign () {
-    if (currentValue.replaceAll(".", "") == "") return;
-    currentValue = (currentValue * -1).toString();
-    render();
-};
-
-toggleSignButton.addEventListener("click", toggleSign);
-
 function addValue (value) {
     if (value == "." && currentValue.includes(".")) return;
     if (value == "0" && currentValue == "0") return;
@@ -37,14 +22,6 @@ function addValue (value) {
     currentValue += value;
     render();
 };
-
-inputsWrapper.addEventListener("pointerdown", (e) => {
-    if (e.target.classList.contains("number-button")) {
-        addValue(e.target.dataset.value);
-    } else if (e.target.classList.contains("operator-button")) {
-        setOperator(e.target.dataset.operator)
-    }
-});
 
 function setOperator (value) {
     // added replaceAll(".", "") so it checkes if the user wantes to make an operation on a single dot, which is an invalid operation
@@ -57,6 +34,12 @@ function setOperator (value) {
         operator = value;
         render();
     };
+};
+
+function toggleSign () {
+    if (currentValue.replaceAll(".", "") == "") return;
+    currentValue = (currentValue * -1).toString();
+    render();
 };
 
 function operation(first, second, operator) {
@@ -76,8 +59,6 @@ function operation(first, second, operator) {
     };
 };
 
-equalButton.addEventListener("click", calculate);
-
 function calculate () {
     if (currentValue == "" || previousValue == "" || operator == "") return;
     if (currentValue == "0" && operator == "÷") return;
@@ -96,11 +77,26 @@ function deleteAll () {
     render();
 };
 
-deleteAllButton.addEventListener("click", deleteAll);
-
 function backspace () {
     currentValue = currentValue.slice(0, -1);
     render();
 };
 
+function render () {
+    mainOutput.textContent = currentValue;
+    secondaryOutput.textContent = `${previousValue} ${operator}`;
+};
+
+render();
+
+inputsWrapper.addEventListener("pointerdown", (e) => {
+    if (e.target.classList.contains("number-button")) {
+        addValue(e.target.dataset.value);
+    } else if (e.target.classList.contains("operator-button")) {
+        setOperator(e.target.dataset.operator)
+    }
+});
+toggleSignButton.addEventListener("click", toggleSign);
+equalButton.addEventListener("click", calculate);
+deleteAllButton.addEventListener("click", deleteAll);
 backspaceButton.addEventListener("click", backspace);
