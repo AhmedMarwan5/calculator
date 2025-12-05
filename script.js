@@ -4,10 +4,7 @@ const toggleSignButton = document.getElementById("toggleSignButton");
 const equalButton = document.getElementById("equalButton");
 const deleteAllButton = document.getElementById("deleteAllButton");
 const backspaceButton = document.getElementById("backspaceButton");
-
 const inputsWrapper = document.querySelector(".inputs-wrapper");
-const numberButtons = document.querySelectorAll(".number-button");
-const operatorButtons = document.querySelectorAll(".operator-button");
 
 let currentValue = "";
 let previousValue = "";
