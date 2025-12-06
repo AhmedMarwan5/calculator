@@ -98,3 +98,58 @@ toggleSignButton.addEventListener("pointerdown", toggleSign);
 equalButton.addEventListener("pointerdown", calculate);
 deleteAllButton.addEventListener("pointerdown", deleteAll);
 backspaceButton.addEventListener("pointerdown", backspace);
+
+document.addEventListener("keydown", (e) => {
+    const key = e.key;
+
+    if(/^[0-9.,]$/.test(key)){
+        e.preventDefault();
+        const value = key === "," ? "." : key;
+        addValue(key);
+        return;
+    };
+    
+    const operatorMap = {
+        "+": "+",
+        "-": "-",
+        "*": "×",
+        "×": "×",
+        "x": "×",
+        "X": "×",
+        "÷": "÷",
+        "/": "÷",
+        "\\": "÷",
+    };
+
+    if (operatorMap[key]) {
+        e.preventDefault();
+        setOperator(operatorMap[key]);
+        return;
+    };
+
+    const actionKeys = {
+        "Backspace": "backspace",
+        "c": "deleteAll",
+        "C": "deleteAll",
+        "Delete": "deleteAll",
+        "Escape": "deleteAll",
+        "Enter": "calculate",
+        "=": "calculate",
+    };
+
+    if (actionKeys[key]) {
+        e.preventDefault();
+        switch (actionKeys[key]){
+            case "backspace":
+                backspace();
+                break;
+            case "deleteAll":
+                deleteAll();
+                break;
+            case "calculate":
+                calculate();
+                break;
+        };
+        return;
+    };
+});
